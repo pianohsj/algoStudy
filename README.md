@@ -1,2 +1,4 @@
-# algoStudy
-algorithm study
+# Algorithm Study
+과제 - 다음 스터디 때까지 2개씩 풀고 업로드
+서로의 소스코드에 피드백 할 것 있으면 남기기
+

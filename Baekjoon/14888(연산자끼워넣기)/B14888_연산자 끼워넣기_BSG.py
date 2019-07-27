@@ -54,10 +54,10 @@ if __name__ == '__main__':
         result = solve(N, A, operator)
 
         if result < min:
-            minVal = result
+            min = result
 
         if result > max:
-            maxVal = result
+            max = result
 
     print(max)
     print(min)

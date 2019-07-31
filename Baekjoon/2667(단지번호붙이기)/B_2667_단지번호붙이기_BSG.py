@@ -5,8 +5,7 @@ dy = [0, 1, 0, -1]
 count=0
 danji=[]
 N = int(sys.stdin.readline())
-for i in range(N):
-    matrix=[list(sys.stdin.readline())]
+matrix = [list(sys.stdin.readline()) for _ in range(N)]
 
 def search(x, y):
     global count

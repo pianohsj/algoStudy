@@ -1,6 +1,6 @@
 package 백준;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ public class B2667_단지번호붙이기_SSR {
 	static int N;
 	static int map[][];
 	static boolean visited[][];
-	static Queue<Integer> dangi;
+	static LinkedList<Integer> dangi;
 	final static int dx[]= {1,-1,0,0};
 	final static int dy[]= {0,0,1,-1};
 
@@ -36,16 +36,9 @@ public class B2667_단지번호붙이기_SSR {
 		}
 		System.out.println(dangi.size());
 		
-		int dangi_arr[]=new int[dangi.size()];
-		
-		for(int i=0;i<dangi_arr.length;i++) {
-			dangi_arr[i]=dangi.remove();
-		}
-		Arrays.sort(dangi_arr);
-		for(int dangi:dangi_arr)
-			System.out.println(dangi);
-		
-		
+		Collections.sort(dangi);
+		for(int d:dangi)
+			System.out.println(d);
 	
 	}
 	

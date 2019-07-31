@@ -2,7 +2,7 @@ import sys
 
 N = M = 0
 arr = []
-## 북 동 남 서
+
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
 
@@ -25,7 +25,7 @@ def leftTurn(d):
 
 def clean(x, y, d, turnCount):
     while True:
-        ## 4방향 모두 탐색했으면
+      
         if turnCount == 4:
             backX = x - dx[d]
             backY = y - dy[d]
@@ -45,12 +45,9 @@ def clean(x, y, d, turnCount):
         nx = x + dx[ld]
         ny = y + dy[ld]
 
-        ## 왼쪽 방향에 청소 안함 (1) 1번부터 다시 시작
         if arr[nx][ny] == 0:
             x, y, d, turnCount = nx, ny, ld, 0
         else:
-            ## 왼쪽 방향에 청소함 (2) 2번부터 시작
-            ## 벽이면 왼쪽 탐색
             x, y, d, turnCount = x, y, ld, turnCount + 1
 
 

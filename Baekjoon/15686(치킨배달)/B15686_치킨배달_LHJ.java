@@ -19,8 +19,8 @@ public class Main {
 		M=sc.nextInt();
 		map=new int[N][N];
 		
-		Pair[] house=new Pair[N];
-		Pair[] chicken = new Pair[N];
+		Pair[] house=new Pair[2*N];
+		Pair[] chicken = new Pair[13];
 		
 		nH=0;
 		nC=0;
@@ -44,18 +44,11 @@ public class Main {
 			}
 		}
 		int[] visited = new int[nC];
-//		for(int i=0; i<nH; i++) {
-//			for(int j=0; j<nC; j++) {
-//				System.out.print(length[i][j]);
-//			}
-//			System.out.println("");
-//		}
-		//System.out.println(nH+" "+nC);
 		dfs(0,visited);
 		System.out.println(ans);
 	}
 	public static void dfs(int len, int[] visited) {
-		if(len==nC) {
+		if(len==M) {
 			int cL=0;
 			for(int i=0; i<nH; i++) {
 				cL+=chickenLength(visited,i);
@@ -73,7 +66,7 @@ public class Main {
 	public static int chickenLength(int[] visited,int houseIdx) {
 		int min=Integer.MAX_VALUE;
 		for(int i=0; i<nC; i++) {
-			if(visited[i]==0) {
+			if(visited[i]==1) {
 				if(min>length[houseIdx][i]) {
 					min=length[houseIdx][i];
 				}

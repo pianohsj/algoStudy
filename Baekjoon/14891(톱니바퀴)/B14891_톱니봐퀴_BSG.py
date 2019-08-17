@@ -45,6 +45,4 @@ if __name__ == '__main__':
 
     solve()
     sum = 0
-    for i, wheel in enumerate(Topni):
-        sum += int(wheel[0]) * (1 << i)
-    print(sum)
+    

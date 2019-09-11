@@ -21,6 +21,7 @@ public class Main {
 				m[i][j]=map[i][j];
 			}
 		}
+		solve(new Pair(0,0),paper,0);
 		if(ans==Integer.MAX_VALUE) {
 			System.out.println(-1);
 		}else {

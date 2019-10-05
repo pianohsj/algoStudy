@@ -5,7 +5,6 @@ public class Main {
 	static int[][] map;
 	static int ans=Integer.MAX_VALUE;
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
 		N=sc.nextInt();
 		people=new int[N+1];
@@ -14,80 +13,64 @@ public class Main {
 			people[i]=sc.nextInt();
 		}
 		for(int i=1; i<N+1; i++) {
-			int n=sc.nextInt();
-			for(int j=0; j<n; j++) {
+			int temp=sc.nextInt();
+			for(int j=0; j<temp; j++) {
 				map[i][sc.nextInt()]=1;
 			}
 		}
 		int[] pick=new int[N+1];
 		pick[1]=1;
-		dfs(1, pick,1);
-		pick[1]=1;
+		solve(pick,2,1);
 		if(ans==Integer.MAX_VALUE) {
 			System.out.println(-1);
 		}else {
 			System.out.println(ans);
 		}
-//		for(int i=1; i<N+1; i++) {
-//			for(int j=1; j<N+1; j++) {
-//				System.out.print(map[i][j]+" ");
-//			}
-//			System.out.println("");
-//		}
-//		System.out.println("");
-	}
-	public static void dfs(int s,int[] pick,int n) {
-		if(n==N) {
-			return;
-		}
-		//System.out.println(Arrays.toString(pick)+" "+n+" "+s);
-		if(n>=1 && n!=N) {
-			int[][] subMap=new int[N+1][N+1];
-			boolean isPossible=true;
-			for(int i=1; i<N+1; i++) {
-				if(pick[i]==0) {
-					int count=0;
-					for(int j=1; j<N+1; j++) {
-						if(pick[j]==0 && map[i][j]==1) {
-							subMap[i][j]=1;
-							count+=1;
+	}	
+	public static void solve(int[] pick,int n, int count) {
+		if(n==N+1) {
+			if(count<N) {
+				int[] check=new int[N+1];
+				for(int k=0; k<2; k++) {
+					int i;
+					for(i=1; i<N+1; i++) {
+						if(pick[i]==k) {
+							break;
 						}
 					}
-					if(count==0) {
-						isPossible=false;
-						//break;
+					Queue<Integer> que=new LinkedList<Integer>();
+					que.add(i);
+					check[i]=1;
+					while(!que.isEmpty()) {
+						int q=que.poll();
+						for(int j=1; j<N+1; j++) {
+							if(pick[j]==k && map[q][j]==1 && check[j]==0) {
+								check[j]=1;
+								que.add(j);
+							}
+						}
 					}
 				}
-			}
-//			for(int i=1; i<N+1; i++) {
-//				for(int j=1; j<N+1; j++) {
-//					System.out.print(subMap[i][j]+" ");
-//				}
-//				System.out.println("");
-//			}
-//			System.out.println(Arrays.toString(pick));
-//			System.out.println(isPossible+"\n");
-			if(isPossible) {
+				int num=0;
 				int a=0;
 				int b=0;
 				for(int i=1; i<N+1; i++) {
-					if(pick[i]==0) {
+					num+=check[i];
+					if(pick[i]==1) {
 						a+=people[i];
 					}else {
 						b+=people[i];
 					}
 				}
-				ans=Math.min(ans, Math.abs(a-b));
-				//return;
+				if(num==N) {
+					ans=Math.min(ans, Math.abs(a-b));
+				}
 			}
+			return;
 		}
-		for(int i=1; i<N+1; i++) {
-			if(map[s][i]==1 && pick[i]==0) {
-				pick[i]=1;
-				dfs(i,pick,n+1);
-				pick[i]=0;
-			}
-		}
+		pick[n]=1;
+		solve(pick,n+1,count+1);
+		pick[n]=0;
+		solve(pick,n+1,count);
 	}
-
 }
